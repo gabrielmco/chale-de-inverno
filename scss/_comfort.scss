@@ -1,0 +1,179 @@
+/* =========================================
+   COMFORT SECTION
+   Layout: Imagem centralizada com 4 blocos 
+   de texto absolutos flutuando ao redor.
+   ========================================= */
+
+.comfort-section {
+  width: 100%;
+
+  background-image: url('../imgs/background-o-conforto.webp');
+  background-size: cover; // Para mostrar a arte do chalé inteira
+  background-position: calc(50% + 17px) center; // Chegado um pouco para a direita
+  background-repeat: no-repeat;
+
+  /* ADICIONE ISTO: Cria o espaço entre essa seção e a de cima */
+  padding-top: 6rem;
+  padding-bottom: 8rem;
+
+  position: relative;
+  z-index: 2;
+  color: #fff;
+
+  // Overlay sutil para garantir leitura dos textos flutuantes
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--color-overlay-dark);
+    z-index: 1;
+  }
+}
+
+.comfort-wrapper {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comfort-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(5rem, 10vw, 9rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-align: center;
+  padding-top: 0;
+  /* Zere o padding */
+
+  /* AUMENTE ISTO: Empurra o "palco" da imagem e textos para baixo */
+  margin-bottom: 12rem;
+  background: linear-gradient(180deg, #c0c0c0 0%, #606060 50%, #9a9a9a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  display: block;
+}
+
+/* Stage que define a área onde os textos flutuam sobre o fundo */
+.comfort-stage {
+  position: relative;
+  width: 100%;
+  height: 600px; // Espaço vertical para os textos flutuarem
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Base Comum dos Textos Flutuantes */
+.text-item {
+  position: absolute;
+  width: 280px;
+  display: flex;
+  flex-direction: row; // Bullet ao lado do texto
+  align-items: center; // Centraliza o triângulo "no meio direitinho" do bloco de texto
+  gap: 1.2rem; // Espaço do bullet para o texto
+  text-align: left; // Todo texto à esquerda, igual referência
+  z-index: 5;
+
+  /* Marcador (Triângulo Amarelo Apontando para Cima: ▲) */
+  .bullet {
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent; // Aumentado
+    border-right: 8px solid transparent; // Aumentado
+    border-bottom: 12px solid #ffd859; // Aumentado
+    margin-top: 0; // O align-items center já cuida
+    flex-shrink: 0;
+  }
+
+  p {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.15rem; // Aumentado de 0.95rem
+    line-height: 1.6;
+    color: #94a3b8;
+    margin: 0;
+
+    strong {
+      color: #e2e8f0;
+      font-size: 1.2rem; // Destaque maior para a categoria
+      font-weight: 500;
+    }
+  }
+}
+
+/* 
+   Posicionamentos Específicos Desktop 
+   Os transforms aqui afetam o centro da âncora absoluta.
+*/
+.text-top {
+  top: -10%; // Desce para entrar na área da arte
+  left: 50%;
+  transform: translateX(-50%);
+
+  p {
+    max-width: 220px;
+  }
+}
+
+.text-bottom {
+  bottom: 0%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.text-left {
+  top: 30%;
+  left: 0%;
+  transform: translateY(-50%);
+}
+
+.text-right {
+  top: 30%;
+  right: 0%;
+  transform: translateY(-50%);
+}
+
+/* =========================================
+   RESPONSIVIDADE E EMPILHAMENTO MOBILE
+   ========================================= */
+@media (max-width: 992px) {
+  .comfort-section {
+    padding: 6rem 0;
+    background-attachment: scroll; // Melhor performance mobile
+  }
+
+  .comfort-wrapper {
+    padding: 0 2rem;
+  }
+
+  .comfort-stage {
+    flex-direction: column;
+    height: auto;
+    gap: 3rem;
+  }
+
+  .text-item {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    width: 100%;
+    max-width: 400px;
+    align-items: center;
+    text-align: center;
+
+    .bullet {
+      margin-bottom: 0.6rem;
+    }
+  }
+}

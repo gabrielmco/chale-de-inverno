@@ -1,0 +1,2232 @@
+@charset "UTF-8";
+/* =========================================
+   HERO SECTION
+   ========================================= */
+.hero-section {
+  position: relative;
+  width: 100%;
+  /* Elevado para 130dvh para esticar o enquadramento mais para baixo, forçando scroll para ver o chao completo da cabana */
+  min-height: 130dvh;
+  background-image: url("../imgs/img-hero.webp");
+  background-size: cover;
+  /* Ancoramento agressivo da parte superior, com o centro deslocado 20% no eixo Y para focar a visão puxada para baixo */
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+}
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Soft gradient para reforço tático do texto */
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.5) 100%), linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 20%);
+  pointer-events: none;
+}
+
+.hero-content {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-height: 500px;
+}
+
+/* =========================================
+   UTILITY GLASSMORPHISM
+   ========================================= */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  /* Refraction edge */
+  border-radius: 1.25rem;
+  z-index: 10;
+  position: relative;
+  /* For GSAP fade entrance */
+  opacity: 0;
+}
+
+/* Badges Flutuantes */
+.badge-icon {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-color: var(--primary-yellow);
+  color: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+.badge-icon svg {
+  width: 14px;
+  height: 14px;
+}
+.badge-icon.badge-right {
+  top: -10px;
+  right: -10px;
+}
+.badge-icon.badge-left {
+  top: -10px;
+  left: -10px;
+}
+
+/* =========================================
+   BLOCO ESQUERDO (CARD PRINCIPAL)
+   ========================================= */
+.left-container {
+  display: flex;
+  flex-direction: column;
+  /* Margem empurrando o container inteiro muito mais pra baixo */
+  margin-top: 14rem;
+  /* Deslocado mais para o centro / direita, saindo do colado com a tela */
+  margin-left: 2rem;
+  align-self: flex-start;
+}
+.left-container .cta-button {
+  background-color: var(--primary-yellow);
+  color: #000;
+  font-family: inherit;
+  border: none;
+  border-radius: 12px;
+  padding: 1.15rem 2.25rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-top: 1.5rem;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px 0 rgba(250, 211, 93, 0.15);
+}
+.left-container .cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -6px rgba(250, 211, 93, 0.4);
+}
+.left-container .cta-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 10px -2px rgba(250, 211, 93, 0.3);
+}
+
+.main-card {
+  padding: 2rem 2.5rem;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.main-card .card-header {
+  margin-bottom: 1rem;
+}
+.main-card .card-header .subtitle {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+.main-card .title {
+  font-size: 2.1rem;
+  font-weight: 500;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+.main-card .description {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--secondary-text);
+  opacity: 0.9;
+}
+
+/* =========================================
+   BLOCO DIREITO (CARD RIO + THUMBNAIL)
+   ========================================= */
+.right-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  /* O espaçamento entre o vidro e o quadrado miniatura da foto */
+  align-self: flex-end;
+  /* Desce muito o container pro fundo da img */
+  margin-top: 24rem;
+  /* Traz o card em direção ao meio da tela, afastando da lateral direita */
+  margin-right: 4rem;
+  z-index: 10;
+}
+
+.sub-card {
+  padding: 1.25rem 1.75rem;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+.sub-card .sub-card-body {
+  display: flex;
+  flex-direction: column;
+}
+.sub-card .sub-card-body .sub-card-text .sub-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.5rem;
+}
+.sub-card .sub-card-body .sub-card-text .sub-description {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--secondary-text);
+  opacity: 0.85;
+}
+
+/* Este bloco foi jogado magicamente pra FOA do .sub-card pra se alinhar na direita */
+.thumbnail-container {
+  width: 84px;
+  height: 84px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+  opacity: 0;
+  /* Começa oculto para a animacao de entrada do GSAP que voce ja tinha */
+}
+.thumbnail-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+}
+.thumbnail-container .thumbnail-img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/* =========================================
+   MEDIA QUERIES GLOBALS HERO
+   ========================================= */
+@media (max-width: 1200px) {
+  .hero-content {
+    padding: 0 2rem;
+  }
+  .left-container {
+    margin-left: 0;
+  }
+  .right-container {
+    margin-right: 0;
+  }
+}
+@media (max-width: 1024px) {
+  .left-container {
+    margin-top: 10rem;
+  }
+}
+@media (max-width: 768px) {
+  .hero-section {
+    background-image: url("../imgs/img-hero-mobile.webp");
+    background-position: center bottom;
+    min-height: 100dvh;
+  }
+  .hero-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end; /* Reposiciona para a base da tela, destravando a visão da foto */
+    padding-top: 8rem;
+    padding-bottom: 1rem; /* Margem minúscula na base para estourar a tela inferior */
+  }
+  .badge-icon {
+    display: none !important; /* Remoção cirúrgica de distrações */
+  }
+  .left-container {
+    margin-top: 0;
+    align-self: stretch; /* Estica para permitir o button em 100% */
+    align-items: flex-start;
+    margin-left: 0;
+    width: 100%;
+  }
+  .left-container .main-card {
+    width: 100%;
+    max-width: none;
+    padding: 1.5rem 1.25rem; /* Caixa esmagada elegante para economizar Y puro */
+  }
+  .left-container .main-card .title {
+    /* Clamp matemático garantindo bloqueio vertical a ~2 linhas confortáveis */
+    font-size: clamp(1.6rem, 7vw, 1.85rem);
+    margin-bottom: 0.6rem;
+    line-height: 1.1;
+  }
+  .left-container .main-card .description {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  .left-container .cta-button {
+    align-self: center;
+    margin-left: 0;
+    width: 100%; /* Largura total de preensão para o polegar */
+    padding: 1rem 2rem;
+    font-size: 0.75rem; /* Um degrau à baixa na hierarquia pro mobile */
+  }
+  .right-container {
+    display: none; /* Silencia elementos terciários completamente em mobile */
+  }
+}
+/* =========================================
+   FEATURES SECTION
+   ========================================= */
+.features-section {
+  width: 100%;
+  background-color: var(--color-surface-dark);
+  position: relative;
+  padding-top: 15rem;
+  padding-bottom: 8rem;
+  color: var(--primary-text);
+  z-index: 2;
+  overflow: visible !important;
+}
+
+.features-grid {
+  width: 100%;
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.features-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* =========================================
+   FAIXA DE TRIÂNGULOS (Absolute Total)
+   ========================================= */
+.triangles-strip {
+  position: absolute;
+  left: 0;
+  top: 15rem;
+  height: 400px;
+  width: 65vw;
+  overflow: hidden;
+}
+
+.triangle {
+  position: absolute;
+  width: 30vw;
+  height: 100%;
+}
+.triangle img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  filter: brightness(0.6) contrast(1.2) grayscale(0.15);
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.triangle:hover img {
+  transform: scale(1.05);
+}
+
+.shape-1 {
+  left: -15vw;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  z-index: 2;
+}
+
+.shape-2 {
+  left: calc(0vw + 0.3vw);
+  clip-path: polygon(50% 0, 0 100%, 100% 100%);
+  z-index: 3;
+}
+.shape-2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--primary-yellow);
+  z-index: 10;
+}
+
+.shape-3 {
+  left: calc(15vw + 0.3vw * 2);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  z-index: 1;
+}
+
+.shape-4 {
+  left: calc(15vw * 2 + 0.3vw * 3);
+  clip-path: polygon(50% 0, 0 100%, 100% 100%);
+  z-index: 4;
+}
+.shape-4 .yellow-edge {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(49.5% 0, 50.5% 0, 100% 100%, 98.5% 100%);
+  background: var(--primary-yellow);
+  z-index: 10;
+}
+
+/* =========================================
+   CONTEÚDO (Texto + Botão)
+   ========================================= */
+.features-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: calc(400px + 4rem);
+  padding: 0;
+  width: 100%;
+  z-index: 10;
+}
+.features-content .tall-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(3.5rem, 12vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  margin-left: -4px !important;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  background: linear-gradient(180deg, #c0c0c0 0%, #606060 50%, #9a9a9a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  display: block;
+}
+.features-content .features-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--secondary-text);
+  max-width: 600px;
+  margin-left: 0 !important;
+  margin-bottom: 3.5rem;
+}
+
+.yellow-btn {
+  background-color: #ffd859 !important;
+  color: #111;
+  font-family: inherit;
+  border: none;
+  border-radius: 12px;
+  padding: 1.15rem 2.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  opacity: 1 !important;
+  margin-left: 0 !important;
+  align-self: flex-start;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.yellow-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px rgba(255, 216, 89, 0.25);
+  opacity: 1;
+}
+
+/* =========================================
+   COLUNA DIREITA — LISTA
+   ========================================= */
+.features-right {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10rem;
+}
+
+.numbered-list {
+  list-style: none;
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 680px;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  cursor: pointer;
+  pointer-events: none;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.list-item:not(.is-active):hover {
+  transform: translateX(8px);
+}
+.list-item:not(.is-active):hover .item-content .label {
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.95);
+}
+.list-item:not(.is-active):hover .item-content .num {
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.6);
+  opacity: 1;
+}
+
+.item-content {
+  display: flex;
+  align-items: baseline;
+  gap: 0.1em;
+  pointer-events: auto;
+}
+
+.item-content .num {
+  font-family: "Outfit", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  background: linear-gradient(180deg, #d0d0d0 0%, #7a7a7a 50%, #aaa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.5;
+  transition: -webkit-text-fill-color 0.4s ease, opacity 0.4s ease;
+}
+
+.item-content .label {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 2.8rem;
+  font-weight: 400;
+  background: linear-gradient(180deg, #c0c0c0 0%, #606060 50%, #9a9a9a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: -webkit-text-fill-color 0.4s ease;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  margin-top: 0.6rem;
+  transition: background 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+
+.divider-long {
+  width: 100%;
+  transform-origin: left;
+}
+
+.divider-short {
+  width: 50%;
+  align-self: flex-end;
+  transform-origin: right;
+}
+
+.list-item.is-active .item-content .num {
+  opacity: 1;
+  background: linear-gradient(180deg, #fff 0%, #d0d0d0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.list-item.is-active .item-content .label {
+  background: linear-gradient(180deg, #fff 0%, #d4d4d4 40%, #fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.list-item.is-active .divider {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 1024px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  .features-right {
+    justify-content: flex-start;
+    margin-top: 2rem;
+  }
+  .numbered-list {
+    min-height: 400px;
+  }
+  .numbered-list .list-item {
+    align-items: flex-start;
+  }
+}
+@media (max-width: 768px) {
+  .features-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    /* Evitar vazamento horizontal */
+    overflow-x: hidden;
+  }
+  .features-grid {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1.5rem;
+    gap: 2rem;
+  }
+  .features-left {
+    display: contents; /* Desacopla filhos para reordenação global no grid */
+  }
+  /* Matemática Ouro: Triangulos 100vw EDGE-TO-EDGE */
+  .triangles-strip {
+    position: relative; /* Flui na página em vez de ficar voando no fundo */
+    width: 100vw;
+    height: 250px;
+    left: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    top: 0;
+    order: 1; /* 1º elemento - TOPO */
+  }
+  .triangle {
+    width: 50vw; /* Base matemática centralizada: W = 50vw */
+  }
+  /* O pulo exato de 25vw (0.5W) faz o clip-path entrelazar perfeitamente igual ao desktop */
+  .shape-1 {
+    left: -25vw; /* T1 vaza a metade inteira na margem esquerda ! */
+    z-index: 2;
+  }
+  .shape-2 {
+    left: 0vw;
+    z-index: 3;
+  }
+  .shape-3 {
+    left: 25vw;
+    z-index: 1;
+  }
+  .shape-4 {
+    left: 50vw; /* T4 começa no meio exato e sua ponta chega precisamente em 100vw ! */
+    z-index: 4;
+  }
+  /* Lista Tátil Condensada (Botões) */
+  .features-right {
+    order: 2; /* 2º elemento - MEIO */
+    margin-top: 0;
+    width: 100%;
+  }
+  .numbered-list {
+    min-height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .list-item {
+    /* 4 itens cabem na primeira fileira e o wrap joga os 3 restantes no centro! */
+    width: calc(25% - 0.375rem);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 0.6rem 0.2rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .list-item.is-active {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(250, 211, 93, 0.3); /* Toque amarelo dourado */
+    transform: translateY(-2px);
+  }
+  .item-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .item-content .label {
+    font-size: 0.6rem;
+    font-family: "Outfit", sans-serif;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .item-content .num {
+    font-size: 0.55rem;
+    opacity: 0.5;
+  }
+  .divider {
+    display: none !important; /* Remove divisores longos do mobile! */
+  }
+  /* Reduz espaço text to block */
+  .features-content {
+    order: 3; /* 3º elemento - FINAL */
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .features-content .yellow-btn {
+    align-self: center !important;
+  }
+}
+/* =========================================
+   DIAMOND GALLERY SECTION
+   Layout: Título metálico central, 3 losangos
+   em "V" com subtítulo flutuando no espaço vazio.
+   ========================================= */
+.diamond-section {
+  width: 100%;
+  background-color: #151c18;
+  background-image: url("../imgs/agora_retire_essa_202604081029.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  padding: 8rem 0 14rem;
+  overflow: hidden;
+  z-index: 2;
+}
+.diamond-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(21, 28, 24, 0.85);
+  z-index: 0;
+}
+
+/* =========================================
+   WRAPPER CENTRAL
+   ========================================= */
+.diamond-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* =========================================
+   TÍTULO "O CHALÉ"
+   ========================================= */
+.diamond-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(5rem, 10vw, 9rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin-bottom: 0;
+  background: linear-gradient(180deg, #c0c0c0 0%, #606060 50%, #9a9a9a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  display: block;
+  padding-top: 0.2em;
+  margin-top: -0.2em;
+}
+
+/* =========================================
+   STAGE DOS LOSANGOS
+   ========================================= */
+.diamond-stage {
+  position: relative;
+  width: 100%;
+  height: calc(340px * 1.414 + 100px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 150px;
+}
+
+/* =========================================
+   SUBTÍTULO FLUTUANTE (Ajustado para 3 linhas)
+   ========================================= */
+.diamond-subtitle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 2px;
+  z-index: 10;
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(0.7rem, 1.2vw, 1.2rem);
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(220, 220, 220, 0.6);
+  white-space: normal;
+  max-width: 170px;
+  text-align: center;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+.diamond-subtitle::before, .diamond-subtitle::after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 1px;
+  background: rgba(255, 215, 89, 0.4);
+}
+
+/* =========================================
+   LOSANGOS
+   ========================================= */
+.diamond-card {
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  transform: rotate(45deg);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: filter 0.4s ease, border-color 0.4s ease;
+}
+.diamond-card:hover {
+  filter: brightness(1.15) saturate(1.1);
+  border-color: rgba(255, 215, 89, 0.25);
+}
+.diamond-card:hover .diamond-img-wrap img {
+  transform: rotate(-45deg) scale(1.06);
+}
+
+.diamond-img-wrap {
+  width: calc(340px * 1.415);
+  height: calc(340px * 1.415);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.diamond-img-wrap img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+  filter: brightness(0.7) contrast(1.1) grayscale(0.1);
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* =========================================
+   POSICIONAMENTO V: Ajustado para mais espaço
+   ========================================= */
+.diamond-left {
+  left: calc(50% - 340px / 2 - 320px);
+  top: 60px;
+}
+
+.diamond-center {
+  left: calc(50% - 340px / 2);
+  top: calc(340px * 1);
+  z-index: 5;
+}
+
+.diamond-right {
+  left: calc(50% - 340px / 2 + 320px);
+  top: 60px;
+}
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 1100px) {
+  .diamond-stage {
+    height: calc(280px * 1.414 + 100px);
+  }
+  .diamond-card {
+    width: 280px;
+    height: 280px;
+  }
+  .diamond-img-wrap {
+    width: calc(280px * 1.415);
+    height: calc(280px * 1.415);
+  }
+  .diamond-left {
+    left: calc(50% - 280px / 2 - 220px);
+  }
+  .diamond-center {
+    left: calc(50% - 280px / 2);
+    top: calc(280px * 0.65);
+  }
+  .diamond-right {
+    left: calc(50% - 280px / 2 + 220px);
+  }
+  .diamond-subtitle {
+    top: 110px;
+  }
+}
+@media (max-width: 768px) {
+  .diamond-section {
+    padding: 5rem 0 6rem;
+  }
+  .diamond-wrapper {
+    padding: 0 2rem;
+  }
+  .diamond-title {
+    font-size: clamp(4rem, 15vw, 6rem);
+  }
+  .diamond-stage {
+    height: auto;
+    min-height: 480px;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+  }
+  .diamond-card {
+    width: 220px;
+    height: 220px;
+    position: relative;
+    left: auto !important;
+    top: auto !important;
+  }
+  .diamond-stage {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    height: auto;
+  }
+  .diamond-img-wrap {
+    width: 311.3px;
+    height: 311.3px;
+  }
+  .diamond-subtitle {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: 1.5rem 0;
+    order: -1;
+    white-space: normal;
+    text-align: center;
+    justify-content: center;
+  }
+  .diamond-center {
+    z-index: 5;
+  }
+}
+@media (max-width: 480px) {
+  .diamond-card {
+    width: 180px;
+    height: 180px;
+  }
+  .diamond-img-wrap {
+    width: 254.7px;
+    height: 254.7px;
+  }
+}
+/* =========================================
+   INTERIOR GRID SECTION
+   Layout: Bento Box assimétrica com hover 
+   premium e estética dark luxe.
+   ========================================= */
+.interior-section {
+  position: relative;
+  width: 100%;
+  padding: 12rem 0;
+  background-color: #151c18;
+  z-index: 2;
+}
+
+.interior-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+.interior-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(4rem, 8vw, 7rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin-bottom: 6rem;
+  /* Gradiente metálico idêntico às demais seções do site */
+  background: linear-gradient(180deg, #c0c0c0 0%, #606060 50%, #9a9a9a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  display: block;
+}
+
+/* =========================================
+   BENTO GRID SYSTEM
+   Sistema de spans para layout assimétrico
+   ========================================= */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 144px;
+  gap: 2rem;
+  grid-auto-flow: row dense;
+}
+
+.bento-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.2);
+}
+.bento-item img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+  filter: brightness(0.85) contrast(1.1);
+  transition: transform 0.6s ease;
+}
+.bento-item {
+  /* Interação Hover Premium */
+}
+.bento-item:hover img {
+  transform: scale(1.05);
+}
+
+/* 
+  Hierarquia Dimensional
+  Ao mesclar linhas e colunas formamos os 
+  blocos de impacto da "Bento Box".
+*/
+.span-col-1 {
+  grid-column: span 1;
+}
+
+.span-col-2 {
+  grid-column: span 2;
+}
+
+.span-col-3 {
+  grid-column: span 3;
+}
+
+.span-row-1 {
+  grid-row: span 1;
+}
+
+.span-row-2 {
+  grid-row: span 2;
+}
+
+.span-row-3 {
+  grid-row: span 3;
+}
+
+.span-row-4 {
+  grid-row: span 4;
+}
+
+/* =========================================
+   RESPONSIVIDADE (Mobile & Tablets)
+   ========================================= */
+@media (max-width: 1024px) {
+  .interior-wrapper {
+    padding: 0 2rem;
+  }
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 240px;
+    gap: 1.5rem;
+  }
+  .span-col-3 {
+    grid-column: span 2;
+  }
+  .span-col-2 {
+    grid-column: span 2;
+  }
+  .span-row-4 {
+    grid-row: span 2;
+  }
+  .span-row-3 {
+    grid-row: span 1;
+  }
+  .span-row-2 {
+    grid-row: span 1;
+  }
+}
+@media (max-width: 768px) {
+  .interior-section {
+    padding: 8rem 0;
+  }
+  .interior-title {
+    margin-bottom: 4rem;
+  }
+  .bento-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 350px;
+  }
+  .span-col-1,
+  .span-col-2,
+  .span-col-3,
+  .span-row-1,
+  .span-row-2,
+  .span-row-3,
+  .span-row-4 {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+  }
+}
+/* =========================================
+   COMFORT SECTION
+   Layout: Imagem centralizada com 4 blocos 
+   de texto absolutos flutuando ao redor.
+   ========================================= */
+.comfort-section {
+  width: 100%;
+  background-image: url("../imgs/background-o-conforto.webp");
+  background-size: cover;
+  background-position: calc(50% + 17px) center;
+  background-repeat: no-repeat;
+  /* ADICIONE ISTO: Cria o espaço entre essa seção e a de cima */
+  padding-top: 6rem;
+  padding-bottom: 8rem;
+  position: relative;
+  z-index: 2;
+  color: #fff;
+}
+.comfort-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-overlay-dark);
+  z-index: 1;
+}
+
+.comfort-wrapper {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comfort-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(5rem, 10vw, 9rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-align: center;
+  padding-top: 0;
+  /* Zere o padding */
+  /* AUMENTE ISTO: Empurra o "palco" da imagem e textos para baixo */
+  margin-bottom: 12rem;
+  background: linear-gradient(180deg, #c0c0c0 0%, #606060 50%, #9a9a9a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  display: block;
+}
+
+/* Stage que define a área onde os textos flutuam sobre o fundo */
+.comfort-stage {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Base Comum dos Textos Flutuantes */
+.text-item {
+  position: absolute;
+  width: 280px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.2rem;
+  text-align: left;
+  z-index: 5;
+  /* Marcador (Triângulo Amarelo Apontando para Cima: ▲) */
+}
+.text-item .bullet {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 12px solid #ffd859;
+  margin-top: 0;
+  flex-shrink: 0;
+}
+.text-item p {
+  font-family: "Outfit", sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #94a3b8;
+  margin: 0;
+}
+.text-item p strong {
+  color: #e2e8f0;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* 
+   Posicionamentos Específicos Desktop 
+   Os transforms aqui afetam o centro da âncora absoluta.
+*/
+.text-top {
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.text-top p {
+  max-width: 220px;
+}
+
+.text-bottom {
+  bottom: 0%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.text-left {
+  top: 30%;
+  left: 0%;
+  transform: translateY(-50%);
+}
+
+.text-right {
+  top: 30%;
+  right: 0%;
+  transform: translateY(-50%);
+}
+
+/* =========================================
+   RESPONSIVIDADE E EMPILHAMENTO MOBILE
+   ========================================= */
+@media (max-width: 992px) {
+  .comfort-section {
+    padding: 6rem 0;
+    background-attachment: scroll;
+  }
+  .comfort-wrapper {
+    padding: 0 2rem;
+  }
+  .comfort-stage {
+    flex-direction: column;
+    height: auto;
+    gap: 3rem;
+  }
+  .text-item {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    width: 100%;
+    max-width: 400px;
+    align-items: center;
+    text-align: center;
+  }
+  .text-item .bullet {
+    margin-bottom: 0.6rem;
+  }
+}
+/* =========================================
+   FOREST VIEW SECTION
+   Layout: Refined proportions, vertical-priority
+   frame, and premium Glass Card.
+   ========================================= */
+.forest-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 8rem 0;
+  background-image: url("../imgs/background-vista-para-o-bosque (2).webp");
+  background-size: cover;
+  background-position: center 25%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+.forest-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-overlay-dark);
+  z-index: 1;
+}
+
+.forest-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* =========================================
+   LADO ESQUERDO: MOLDURA VERTICAL
+   ========================================= */
+.forest-left {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.forest-title-box {
+  border: 6px solid #ffd859;
+  padding: 6rem 2.5rem;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+}
+
+.forest-title {
+  font-family: "Bebas Neue", sans-serif;
+  color: #fff;
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0.05em;
+  text-align: left;
+  font-size: clamp(3.5rem, 6.5vw, 6.8rem);
+  margin: 0;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================================
+   LADO DIREITO: SOM DO RIO + GLASS CARD
+   ========================================= */
+.forest-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.forest-right-header {
+  margin-bottom: 1.5rem;
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 0.08em;
+  text-align: right;
+  width: 100%;
+}
+.forest-right-header .label {
+  font-size: 3.8rem;
+  color: #ffd859;
+  background: linear-gradient(180deg, #ffeaa7 0%, #f1c40f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.forest-card {
+  position: relative;
+  width: 100%;
+  max-width: 550px;
+  padding: 3rem 2.5rem;
+  border-radius: 12px;
+  /* Glassmorphism Premium */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+.forest-card .glass-text {
+  font-family: "Outfit", sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: #aebfd4;
+  margin: 0;
+}
+.forest-card {
+  /* Badge/Tag Amarela Premium */
+}
+.forest-card .card-badge {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 24px;
+  height: 24px;
+  background-color: #ffd859;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(255, 216, 89, 0.4);
+}
+.forest-card .card-badge .check-icon {
+  color: #151c18;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* =========================================
+   RESPONSIVIDADE (Mobile)
+   ========================================= */
+@media (max-width: 992px) {
+  .forest-section {
+    padding: 6rem 0;
+    min-height: auto;
+  }
+  .forest-wrapper {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    padding: 0 2rem;
+  }
+  .forest-left {
+    justify-content: center;
+  }
+  .forest-title-box {
+    padding: 4rem 2rem;
+    border-width: 4px;
+    min-height: auto;
+  }
+  .forest-title {
+    font-size: clamp(3rem, 12vw, 4.5rem);
+    text-align: center;
+  }
+  .forest-right {
+    align-items: center;
+  }
+  .forest-right-header {
+    text-align: center;
+  }
+  .forest-right-header .label {
+    font-size: 3rem;
+  }
+  .forest-card {
+    max-width: 100%;
+    padding: 2.5rem 1.5rem;
+  }
+}
+/* =========================================
+   EXPLORE VIDEOS SECTION
+   Layout: Título topo-esquerda, cards
+   alinhados embaixo-direita (ref image).
+   ========================================= */
+.explore-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 0;
+  background-image: url("../imgs/background-section-video.webp");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  z-index: 2;
+}
+.explore-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(15, 23, 19, 0.8) 0%, rgba(15, 23, 19, 0.2) 100%);
+  z-index: 0;
+}
+
+.explore-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  width: 100%;
+}
+
+.explore-content-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.explore-left {
+  flex: 1 1 500px;
+  max-width: 750px;
+}
+
+.explore-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(3.5rem, 5.5vw, 6rem);
+  font-weight: 400;
+  line-height: 0.95;
+  color: #fff;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.02em;
+}
+.explore-title .text-accent {
+  color: var(--primary-yellow);
+}
+
+.explore-action-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.explore-action-row .action-text {
+  font-family: "Outfit", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  color: #e2e8f0;
+  text-transform: uppercase;
+}
+.explore-action-row .icon-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.explore-action-row .icon-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: #fff;
+  margin-left: 3px;
+  transition: fill 0.3s ease;
+}
+.explore-action-row .icon-btn:hover {
+  background: #fff;
+}
+.explore-action-row .icon-btn:hover svg {
+  fill: #151f19;
+}
+
+.explore-description {
+  font-family: "Outfit", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.65;
+  max-width: 420px;
+  margin-bottom: 0;
+}
+
+/* =========================================
+   LADO DIREITO (CARDS HORIZONTAIS)
+   Cards alinhados pela base do grid
+   ========================================= */
+.explore-right {
+  display: flex;
+  gap: 1.5rem;
+  align-self: end;
+  align-items: flex-end;
+}
+
+.video-thumbnail-card {
+  position: relative;
+  width: 280px;
+  aspect-ratio: 4/3;
+  border-radius: 0;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+}
+.video-thumbnail-card img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: transform 0.6s ease, filter 0.4s ease;
+  filter: brightness(1.2) saturate(1.1);
+}
+.video-thumbnail-card .play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.video-thumbnail-card .play-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.video-thumbnail-card .play-circle svg {
+  width: 18px;
+  height: 18px;
+  fill: #fff;
+  margin-left: 4px;
+}
+.video-thumbnail-card {
+  /* Estado Ativo */
+}
+.video-thumbnail-card.is-active {
+  border-color: rgba(250, 211, 93, 0.6);
+  box-shadow: 0 0 25px rgba(250, 211, 93, 0.15), 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+.video-thumbnail-card.is-active img {
+  filter: brightness(1.3) saturate(1.2);
+}
+.video-thumbnail-card {
+  /* Hover Premium */
+}
+.video-thumbnail-card:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.video-thumbnail-card:hover img {
+  transform: scale(1.05);
+  filter: brightness(1.4) saturate(1.2);
+}
+.video-thumbnail-card:hover .play-circle {
+  background: #fff;
+  border-color: #fff;
+  transform: scale(1.1);
+}
+.video-thumbnail-card:hover .play-circle svg {
+  fill: #151f19;
+}
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 1300px) {
+  .explore-wrapper {
+    padding: 0 3rem;
+  }
+  .video-thumbnail-card {
+    width: 240px;
+  }
+}
+@media (max-width: 1024px) {
+  .explore-content-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .explore-right {
+    justify-content: flex-start;
+  }
+}
+@media (max-width: 768px) {
+  .explore-section {
+    padding: 6rem 0;
+  }
+  .explore-wrapper {
+    padding: 0 2rem;
+  }
+  .explore-title {
+    font-size: clamp(3.5rem, 12vw, 5rem);
+  }
+  .explore-action-row {
+    flex-wrap: wrap;
+  }
+  .explore-right {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .video-thumbnail-card {
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 16/9;
+  }
+}
+/* =========================================
+   CONTACT SECTION + FOOTER
+   Dark Luxe — sem imagem de fundo
+   ========================================= */
+.contact-section {
+  position: relative;
+  padding: 10rem 2rem 4rem;
+  background-color: var(--color-surface-deep);
+  z-index: 2;
+}
+
+.contact-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ─── GRID BIPARTIDO (Formulário + Regras) ─── */
+.contact-split {
+  display: grid;
+  grid-template-columns: 1.25fr 0.85fr;
+  gap: 3rem;
+  align-items: stretch;
+}
+
+/* ─── LATERAIS DO GRID ─── */
+.contact-form-side {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1.25rem;
+  padding: 4rem 3.5rem 3.5rem;
+  box-shadow: 0 4px 60px rgba(0, 0, 0, 0.45), 0 1px 3px rgba(255, 255, 255, 0.02) inset;
+}
+
+.contact-info-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+}
+
+/* ─── COPYWRITING HEADER ─── */
+.contact-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.contact-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.8rem;
+}
+
+.contact-subtitle {
+  font-family: "Outfit", sans-serif;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 300;
+  max-width: 80%;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ─── GRID 2 COLUNAS DO FORMULÁRIO ─── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.form-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.full-width {
+  grid-column: 1/-1;
+}
+
+.field-label {
+  font-family: "Outfit", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-left: 0.25rem;
+}
+
+.form-field input,
+.form-field select {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  outline: none;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+}
+.form-field input::-moz-placeholder, .form-field select::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.35);
+  font-weight: 300;
+}
+.form-field input::placeholder,
+.form-field select::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+  font-weight: 300;
+}
+.form-field input:focus,
+.form-field select:focus {
+  border-color: var(--primary-yellow);
+  box-shadow: 0 0 0 3px rgba(250, 211, 93, 0.08);
+}
+
+/* Seta do dropdown */
+.form-field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='rgba(255,255,255,0.5)' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5l6.5 6.5 6.5-6.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.25rem center;
+  background-size: 12px;
+  padding-right: 3rem;
+  cursor: pointer;
+}
+
+.form-field select option {
+  background: #1a2a22;
+  color: #fff;
+}
+
+/* ─── BOTÕES ─── */
+.contact-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn-primary,
+.btn-ghost {
+  padding: 1rem 2rem;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.1em;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: var(--primary-yellow);
+  color: #151f19;
+  border: none;
+}
+.btn-primary:hover {
+  background: #e8c34e;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(250, 211, 93, 0.2);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.btn-ghost:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   ESTILOS DO PAINEL DE INFORMAÇÕES (DIREITA)
+   ========================================= */
+.info-block {
+  margin-bottom: 1rem;
+}
+
+.info-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  letter-spacing: 0.08em;
+  color: var(--primary-yellow);
+  margin-bottom: 1rem;
+}
+
+.map-container {
+  width: 100%;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  margin-bottom: 2rem;
+}
+.map-container iframe {
+  display: block;
+  width: 100%;
+  /* CSS Filter Masterpiece: Transforma o Google Maps claro num mapa dark premium */
+  filter: grayscale(100%) invert(90%) contrast(80%) sepia(20%) hue-rotate(180deg);
+  opacity: 0.85;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+.map-container iframe:hover {
+  opacity: 1;
+  filter: grayscale(80%) invert(90%) contrast(90%) sepia(20%) hue-rotate(180deg);
+}
+
+.info-separator {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.1), transparent);
+  margin: 2.5rem 0;
+}
+
+.rules-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* Increased for Art Gallery / Airy feel */
+}
+
+.rule-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.rule-item:hover {
+  transform: translateX(4px);
+}
+.rule-item:hover .rule-icon-wrapper {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--primary-yellow);
+}
+.rule-item:hover .rule-text {
+  color: #fff;
+}
+
+.rule-icon-wrapper {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.4);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.rule-svg {
+  width: 20px;
+  height: 20px;
+}
+
+.rule-text {
+  font-family: "Outfit", sans-serif;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 300;
+  line-height: 1.5;
+  transition: color 0.3s ease;
+}
+
+/* =========================================
+   FOOTER MINIMALISTA
+   ========================================= */
+.site-footer {
+  margin-top: 8rem;
+  padding: 3rem 2rem 2.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-logo {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.1em;
+  background: linear-gradient(180deg, #fff 0%, #a0a0a0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer-slogan {
+  font-family: "Outfit", sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+.footer-socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.footer-socials a svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+.footer-socials a:hover {
+  color: var(--primary-yellow);
+  transform: translateY(-2px);
+}
+
+.footer-links-bottom {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.3);
+}
+.footer-links-bottom a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.footer-links-bottom a:hover {
+  color: #fff;
+}
+.footer-links-bottom .dot-separator {
+  color: rgba(255, 255, 255, 0.15);
+}
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 1024px) {
+  .contact-split {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  .contact-info-panel {
+    padding: 0 1rem;
+    align-items: center;
+    text-align: center;
+  }
+  .rules-list li {
+    justify-content: center;
+  }
+  .info-separator {
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+  }
+}
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 6rem 1.5rem 3rem;
+  }
+  .contact-form-side {
+    padding: 3rem 1.5rem 2.5rem;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  .contact-buttons {
+    flex-direction: column;
+  }
+  .contact-buttons .btn-primary,
+  .contact-buttons .btn-ghost {
+    width: 100%;
+    text-align: center;
+  }
+  .footer-links-bottom {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .footer-links-bottom .dot-separator {
+    display: none;
+  }
+}
+:root {
+  --primary-yellow: #fad35d;
+  --primary-text: #ffffff;
+  --secondary-text: #e2e8f0;
+  /* GRADIENTE REFOPÇADO: Um tom densamente verde florestal / azulado pra simular vidro de alta espessura sob a floresta invernal */
+  --glass-bg: linear-gradient(135deg, rgba(16, 52, 43, 0.55), rgba(8, 28, 24, 0.65));
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-blur: blur(24px);
+  /* DARK LUXE SURFACE TOKENS */
+  --color-surface-dark: #151c18;
+  --color-surface-deep: #151f19;
+  --color-overlay-dark: rgba(15, 20, 18, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Outfit", sans-serif;
+  color: var(--primary-text);
+  overflow-x: hidden;
+  background-color: var(--color-surface-deep);
+}
+
+/* =========================================
+   ACESSIBILIDADE GLOBAIS (A11Y)
+   ========================================= */
+/* Screen Reader Only: Oculta visualmente, porém mantém acessível para NVDA/VoiceOver */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Desliga sobressaltos e pulos bruscos para usuários com labirintite ativada no Sistema Operacional */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+#app {
+  position: relative;
+  width: 100%;
+}
+
+/* =========================================
+   NAVBAR GLOBAL
+   ========================================= */
+.navbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  padding: 2.5rem 4rem;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+  /* Para entrada do GSAP */
+  /* Máscara sutil que protege legibilidade sem parecer uma barra sólida */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45) 0%, transparent 100%);
+}
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+.navbar .nav-links li a {
+  position: relative; /* Ancora o ::after do underline */
+  color: var(--primary-text);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+.navbar .nav-links li a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.8);
+  /* Começa colapsado — expande esquerda -> direita no hover */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.navbar .nav-links li a:hover {
+  opacity: 1;
+}
+.navbar .nav-links li a:hover::after {
+  transform: scaleX(1);
+}
+.navbar .nav-links li a.nav-reserve {
+  opacity: 1;
+  /* Botão de CTA não recebe underline — já tem sua identidade */
+}
+.navbar .nav-links li a.nav-reserve::after {
+  display: none;
+}
+.navbar .mobile-nav-header {
+  display: none;
+}
+
+/* Navbar queries */
+@media (max-width: 1200px) {
+  .navbar {
+    padding: 2.5rem 3rem;
+  }
+}
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1.5rem 1.5rem 0 1.5rem; /* Menos preenchimento embaixo para não sobrar tela cega */
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+  }
+  .navbar .nav-links {
+    display: none; /* Regra UX - Oculta navegação inteira */
+  }
+  .navbar .mobile-nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .navbar .mobile-nav-header .mobile-logo {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.1em;
+    background: linear-gradient(180deg, #fff 0%, #a0a0a0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .navbar .mobile-nav-header .mobile-menu-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+  }
+}/*# sourceMappingURL=style.css.map */

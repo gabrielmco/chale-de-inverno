@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+  <title>O Refúgio de Inverno</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&display=swap"
+    rel="stylesheet">
+
+  <link rel="preload" as="image" href="imgs/img-hero.webp">
+  <link rel="stylesheet" href="scss/style.css">
+</head>
+
+<body>
+  <div id="app">
+    <nav class="navbar">
+      <!-- Elementos mobile-only (injetados para ux limpa) -->
+      <div class="mobile-nav-header">
+        <span class="mobile-logo">O REFÚGIO</span>
+        <button class="mobile-menu-btn" aria-label="Abrir menu">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" fill="none">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="13" y1="18" x2="21" y2="18"></line> <!-- Asymmetric lines for premium feel -->
+          </svg>
+        </button>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="#inicio">INÍCIO</a></li>
+        <li><a href="#sobre">SOBRE</a></li>
+        <li><a href="#fotos">FOTOS</a></li>
+        <li><a href="#localizacao">LOCALIZAÇÃO</a></li>
+        <li><a href="#reservar" class="nav-reserve">RESERVAR</a></li>
+      </ul>
+    </nav>
+
+    <main class="hero-section">
+      <div class="hero-content">
+
+        <div class="left-container">
+          <div class="glass-card main-card">
+            <div class="badge-icon badge-right">
+              <svg aria-hidden="true" role="presentation" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                fill="currentColor" viewBox="0 0 256 256">
+                <path
+                  d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm45.66,85.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z">
+                </path>
+              </svg>
+            </div>
+            <h1 class="title">CONFORTO NAS MONTANHAS</h1>
+            <p class="description">Um chalé exclusivo localizado próximo a um rio cristalino em terreno privativo.
+              Oferece lareira, banheira de hidromassagem e área de lazer.</p>
+          </div>
+          <button class="cta-button">RESERVAR ESTADIA</button>
+        </div>
+
+        <div class="right-container">
+          <div class="glass-card sub-card">
+            <div class="badge-icon badge-left">
+              <svg aria-hidden="true" role="presentation" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                fill="currentColor" viewBox="0 0 256 256">
+                <path
+                  d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm45.66,85.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z">
+                </path>
+              </svg>
+            </div>
+
+            <div class="sub-card-body">
+              <div class="sub-card-text">
+                <h2 class="sub-title">VISTA PARA O RIO</h2>
+                <p class="sub-description">Deck privativo com vista panorâmica para o rio cristalino.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="thumbnail-container">
+            <img src="imgs/rio.webp" alt="Vista do rio cristalino" width="84" height="84" class="thumbnail-img">
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <section class="features-section" id="sobre">
+      <div class="features-grid">
+
+        <div class="features-left">
+
+          <div class="triangles-strip">
+            <div class="triangle shape-1">
+              <img src="imgs/vista-bosque-rio.webp" alt="Vista Exclusiva da natureza nas montanhas" loading="lazy" width="600" height="800">
+            </div>
+            <div class="triangle shape-2">
+              <img src="imgs/nevoa-densidade.webp" alt="Cenário Natural com névoa densa" loading="lazy" width="600" height="800">
+            </div>
+            <div class="triangle shape-3">
+              <img src="imgs/sala-do-chale.webp" alt="Conforto Interno da sala de estar" loading="lazy" width="600" height="800">
+            </div>
+            <div class="triangle shape-4">
+              <div class="yellow-edge"></div>
+              <img src="imgs/lareira.webp" alt="Detalhes Premium da lareira acesa" loading="lazy" width="600" height="800">
+            </div>
+          </div>
+
+          <div class="features-content">
+            <h2 class="tall-title">CANSADO DA AGITAÇÃO DA CIDADE?</h2>
+            <p class="features-description">
+              Onde o tempo para e o aconchego é prioridade: <br>
+              Siga o ritmo do vento nas árvores, o brilho do sol e o estalar da lenha<br>
+              na fogueira.
+            <p>
+              <button class="cta-button yellow-btn">RESERVAR</button>
+          </div>
+        </div>
+
+        <div class="features-right">
+          <ul class="numbered-list interactive-gallery-nav">
+            <li class="list-item is-active" data-category="chale">
+              <div class="item-content"><span class="num">01.</span><span class="label">O CHALÉ</span></div>
+              <div class="divider divider-long"></div>
+            </li>
+            <li class="list-item" data-category="bosque">
+              <div class="item-content"><span class="num">02.</span><span class="label">O BOSQUE</span></div>
+              <div class="divider divider-short"></div>
+            </li>
+            <li class="list-item" data-category="rio">
+              <div class="item-content"><span class="num">03.</span><span class="label">O RIO</span></div>
+              <div class="divider divider-long"></div>
+            </li>
+            <li class="list-item" data-category="aconchego">
+              <div class="item-content"><span class="num">04.</span><span class="label">ACONCHEGO</span></div>
+              <div class="divider divider-short"></div>
+            </li>
+            <li class="list-item" data-category="detalhes">
+              <div class="item-content"><span class="num">05.</span><span class="label">DETALHES</span></div>
+              <div class="divider divider-long"></div>
+            </li>
+            <li class="list-item" data-category="horizonte">
+              <div class="item-content"><span class="num">06.</span><span class="label">HORIZONTE</span></div>
+              <div class="divider divider-short"></div>
+            </li>
+            <li class="list-item" data-category="noturno">
+              <div class="item-content"><span class="num">07.</span><span class="label">NOTURNO</span></div>
+              <div class="divider divider-long"></div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="diamond-section" id="fotos">
+      <div class="diamond-wrapper">
+
+        <h2 class="diamond-title">O CHALÉ</h2>
+
+        <div class="diamond-stage">
+
+          <p class="diamond-subtitle">o local perfeito para o seu descanso</p>
+
+          <div class="diamond-card diamond-left">
+            <div class="diamond-img-wrap">
+              <img src="imgs/cama-do-chale.webp" alt="Interior aconchegante do chalé" width="400" height="600">
+            </div>
+          </div>
+
+          <div class="diamond-card diamond-center">
+            <div class="diamond-img-wrap">
+              <img src="imgs/o-bosque.webp" alt="Vista da floresta enevoada" width="400" height="600">
+            </div>
+          </div>
+
+          <div class="diamond-card diamond-right">
+            <div class="diamond-img-wrap">
+              <img src="imgs/pinheiros-nevoa.webp" alt="Pinheiros na névoa" width="400" height="600">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="interior-section" id="interior">
+      <div class="interior-wrapper">
+        <h2 class="interior-title">POR DENTRO DO CHALÉ</h2>
+
+        <div class="bento-grid">
+          <div class="bento-item span-col-2 span-row-4">
+            <img src="imgs/sala-do-chale (2).webp" alt="Interior detalhe" width="800" height="600">
+          </div>
+
+          <div class="bento-item span-col-1 span-row-2">
+            <img src="imgs/poltrona-aconchegante.webp" alt="Detalhe do chalé" width="400" height="300">
+          </div>
+
+          <div class="bento-item span-col-1 span-row-3">
+            <img src="imgs/cama-do-chale (2).webp" alt="Quarto conforto" width="400" height="450">
+          </div>
+
+          <div class="bento-item span-col-1 span-row-2">
+            <img src="imgs/lareira (2).webp" alt="Área de Lareira" width="400" height="300">
+          </div>
+
+          <div class="bento-item span-col-3 span-row-2">
+            <img src="imgs/cozinha-do-chale.webp" alt="Detalhes premium" width="1200" height="300">
+          </div>
+
+          <div class="bento-item span-col-1 span-row-3">
+            <img src="imgs/vista-dos-pinheiros-do-chão.webp" alt="Natureza externa" width="400" height="450">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="comfort-section" id="conforto">
+      <div class="comfort-wrapper">
+        <h2 class="comfort-title">CONFORTO</h2>
+
+        <div class="comfort-stage">
+          <div class="text-top text-item">
+            <span class="bullet"></span>
+            <p><strong>Estadia:</strong> chalé confortável com todas as comodidades.</p>
+          </div>
+
+          <div class="text-left text-item">
+            <span class="bullet"></span>
+            <p><strong>Lazer:</strong> churrasqueira, terraço, acesso a trilhas na floresta.</p>
+          </div>
+
+          <div class="text-right text-item">
+            <span class="bullet"></span>
+            <p><strong>Conveniências:</strong> cama, banho, cozinha equipada, aquecimento, wi-fi e estacionamento.</p>
+          </div>
+
+          <div class="text-bottom text-item">
+            <span class="bullet"></span>
+            <p><strong>Exclusividade:</strong> uso de sauna privativa localizada no seu terreno.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="forest-section" id="floresta">
+      <div class="forest-wrapper">
+        <div class="forest-left">
+          <div class="forest-title-box">
+            <h2 class="forest-title">
+              VISTA<br>PARA O<br>BOSQUE<br>E O RIO
+            </h2>
+          </div>
+        </div>
+
+        <div class="forest-right">
+          <div class="forest-right-header">
+            <span class="label">SOM DO RIO</span>
+          </div>
+
+          <div class="forest-card">
+            <div class="card-badge">
+              <span class="check-icon" aria-hidden="true" role="presentation">✓</span>
+            </div>
+
+            <p class="glass-text">
+              O coração do rio: Através das árvores, logo abaixo ou a poucos passos de distância, o rio da montanha
+              corre brilhante. Mesmo de longe, você pode sentir o frescor e ouvir o murmúrio contínuo e calmante — a
+              trilha sonora eterna do seu descanso.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="explore-section" id="explore">
+      <div class="explore-wrapper">
+        <div class="explore-content-grid">
+
+          <div class="explore-left">
+            <h2 class="explore-title">
+              DESCUBRA O MUNDO <span class="text-accent">NOVO</span> DA MONTANHA
+            </h2>
+
+            <div class="explore-action-row">
+              <span class="action-text">EXPLORE A MONTANHA EM 4K</span>
+              <button class="icon-btn" aria-label="Assistir ao vídeo explorando a montanha">
+                <svg viewBox="0 0 24 24" aria-hidden="true" role="presentation">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </button>
+            </div>
+
+            <p class="explore-description">
+              Vamos encontrar o pôr do sol juntos,
+              preparar café nas montanhas e descobrir
+              novos lugares incríveis. Vamos experimentar
+              os pratos da culinária local e sentir
+              toda a hospitalidade dos moradores da região.
+              De dia caminhamos pelas trilhas da serra,
+              à noite fogueira e descanso sob as estrelas.
+            </p>
+          </div>
+
+          <div class="explore-right">
+            <div class="video-thumbnail-card is-active">
+              <img src="imgs/thumb-1.webp" alt="Vídeo Montanha" width="460" height="260">
+              <div class="play-overlay">
+                <div class="play-circle">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" role="presentation">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="video-thumbnail-card">
+              <img src="imgs/thumb-2.webp" alt="Vídeo Floresta" width="460" height="260">
+              <div class="play-overlay">
+                <div class="play-circle">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" role="presentation">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="reservar">
+      <div class="contact-wrapper">
+        <div class="contact-split">
+          <!-- FORMULÁRIO -->
+          <div class="contact-card contact-form-side">
+            <div class="contact-header">
+              <h2 class="contact-title">SUA JORNADA COMEÇA AQUI</h2>
+              <p class="contact-subtitle">Desconecte-se do mundo exterior e reserve sua imersão particular na montanha.</p>
+            </div>
+
+            <form class="contact-grid" id="contact-form">
+              <div class="form-field full-width">
+                <label for="field-name" class="field-label">Como podemos chamá-lo?</label>
+                <input type="text" id="field-name" placeholder="Seu nome completo" required>
+              </div>
+
+              <div class="form-field full-width">
+                <label for="field-chale" class="field-label">Experiência Desejada</label>
+                <select id="field-chale" required>
+                  <option value="" disabled selected>Escolha seu refúgio...</option>
+                  <option value="chale-rio">Chalé Vista do Rio — Som das Águas</option>
+                  <option value="chale-floresta">Chalé da Floresta — Imersão Verde</option>
+                  <option value="chale-montanha">Chalé da Montanha — Altura e Silêncio</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="field-phone" class="field-label">Contato Rápido</label>
+                <input type="tel" id="field-phone" placeholder="(11) 99999-9999">
+              </div>
+
+              <div class="form-field">
+                <label for="field-date" class="field-label">Data de Chegada</label>
+                <input type="date" id="field-date" required>
+              </div>
+            </form>
+
+            <div class="contact-buttons">
+              <button type="submit" form="contact-form" class="btn-primary">SOLICITAR RESERVA</button>
+              <button type="button" class="btn-ghost">FALAR COM CONCIERGE</button>
+            </div>
+          </div>
+
+          <!-- REGRAS E LOCALIZAÇÃO -->
+          <div class="contact-info-panel">
+            <div class="info-block">
+              <h3 class="info-title">LOCALIZAÇÃO PRIVATIVA</h3>
+              <div class="map-container">
+                <!-- Mapa da Serra da Mantiqueira genérico para demonstração -->
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117628.75058778642!2d-45.65171735160827!3d-22.78440845341253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cc8231cfee8d99%3A0xeab50daddad05501!2sSerra%20da%20Mantiqueira!5e0!3m2!1spt-BR!2sbr!4v1704222000000!5m2!1spt-BR!2sbr" 
+                  width="100%" 
+                  height="180" 
+                  style="border:0;" 
+                  allowfullscreen="" 
+                  loading="lazy" 
+                  referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+              </div>
+            </div>
+
+            <div class="info-separator"></div>
+
+            <div class="info-block">
+              <h3 class="info-title">REGRAS DA CASA</h3>
+              <ul class="rules-list">
+                <li class="rule-item">
+                  <div class="rule-icon-wrapper">
+                    <svg class="rule-svg" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <span class="rule-text">Check-in após 15h. Check-out até 11h para higienização profunda.</span>
+                </li>
+                <li class="rule-item">
+                  <div class="rule-icon-wrapper">
+                    <svg class="rule-svg" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M92,108a28,28,0,1,0-28-28A28,28,0,0,0,92,108Zm0-40a12,12,0,1,1-12,12A12,12,0,0,1,92,68Zm72,40a28,28,0,1,0-28-28A28,28,0,0,0,164,108Zm0-40a12,12,0,1,1-12,12A12,12,0,0,1,164,68Zm64,84a28,28,0,1,0-28-28A28,28,0,0,0,228,152Zm0-40a12,12,0,1,1-12,12A12,12,0,0,1,228,112ZM28,152a28,28,0,1,0-28-28A28,28,0,0,0,28,152Zm0-40A12,12,0,1,1,16,124,12,12,0,0,1,28,112Zm116.32,96a40,40,0,0,0,23.32-7.44l11.66-8.32a8,8,0,0,0-9.28-13l-11.66,8.32a24,24,0,0,1-28.72,0L70,164.64h0c-17.76-12.8-46.12-11.24-54.88,11.24a8.16,8.16,0,0,0-.48,1.24,63.18,63.18,0,0,0-2.64,18V216a24,24,0,0,0,24,24h104a24,24,0,0,0,24-24V195.34a8,8,0,0,0-16,0V216a8,8,0,0,1-8,8H36a8,8,0,0,1-8-8v-20.84C35.12,183.3,55.54,179.31,69.52,189.4l59.8,42.88a40,40,0,0,0,47.88,0l11.66-8.32a8,8,0,0,0-9.28-13l-11.66,8.32a24.13,24.13,0,0,1-14,4.44Z" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <span class="rule-text">Pets bem-educados de pequeno porte desfrutam de cortesia.</span>
+                </li>
+                <li class="rule-item">
+                  <div class="rule-icon-wrapper">
+                    <svg class="rule-svg" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M168,104a8,8,0,0,1-8,8H104a8,8,0,0,1,0-16h56A8,8,0,0,1,168,104Zm88,24A128,128,0,1,1,128,0,128.15,128.15,0,0,1,256,128Zm-24,40H192v24H104a8,8,0,0,0,0,16h88a8,8,0,0,0,8-8V168h40a8,8,0,0,0,0-16H104a8,8,0,0,0,0,16h80Zm8-40a112,112,0,1,0-112,112,112.13,112.13,0,0,0,112-112ZM160,136H104a8,8,0,0,0,0,16h56a8,8,0,0,0,0-16Z" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <span class="rule-text">Preservação do ar puro: ambiente estritamente não-fumante.</span>
+                </li>
+                <li class="rule-item">
+                  <div class="rule-icon-wrapper">
+                    <svg class="rule-svg" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M233.54,142.15l-33.32-9.52a8,8,0,0,0-9.52,3.32,8,8,0,0,0,3.32,9.52l33.32,9.52a8,8,0,0,0,4.42,1.29,8,8,0,0,0,7.31-4.72A8,8,0,0,0,233.54,142.15ZM104.38,197.64,71.06,207.16a8,8,0,0,0,4.42,15.38,8.23,8.23,0,0,0,2.15-.29l33.32-9.52a8,8,0,0,0,2.15-15.38C109,197.16,106.63,197,104.38,197.64Zm111,35.26a8,8,0,0,0-11.31,0l-16,16a8,8,0,0,0,0,11.31,8,8,0,0,0,11.31,0l16-16A8,8,0,0,0,215.36,232.9Zm19.14-87.75-33.32-9.52a8,8,0,0,0-4.42,15.38l33.32,9.52a8,8,0,0,0,2.15.29,8,8,0,0,0,2.27-15.67Zm-155.67,82.72L45.51,237.38a8,8,0,1,0,11.31,11.31l33.32-9.51a8,8,0,1,0-4.42-15.38A8.16,8.16,0,0,0,78.83,227.87Zm133.74-124.7a112,112,0,0,0-189.65,79.4,32,32,0,0,0,32,32,32.32,32.32,0,0,0,6.07-.58,32.06,32.06,0,0,1,25.93,32,32.06,32.06,0,0,1-32,32H40a8,8,0,0,0,0,16h15a48.06,48.06,0,0,0,48-48,48.06,48.06,0,0,0-48-48,16,16,0,0,1-16-16,96,96,0,0,1,162.58-68.06A8,8,0,0,0,214.24,103.17Z" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <span class="rule-text">Sinfonia da natureza: respeitamos o silêncio após as 22h.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <div class="footer-brand">
+            <span class="footer-logo">O REFÚGIO DE INVERNO</span>
+            <span class="footer-slogan">Projetado para experiências intensas.</span>
+          </div>
+
+          <div class="footer-socials">
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.97.24 2.43.403a4.08 4.08 0 011.47.957c.453.453.78.898.957 1.47.163.46.35 1.26.403 2.43.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.24 1.97-.403 2.43a4.08 4.08 0 01-.957 1.47 4.08 4.08 0 01-1.47.957c-.46.163-1.26.35-2.43.403-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.97-.24-2.43-.403a4.08 4.08 0 01-1.47-.957 4.08 4.08 0 01-.957-1.47c-.163-.46-.35-1.26-.403-2.43C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.054-1.17.24-1.97.403-2.43a4.08 4.08 0 01.957-1.47A4.08 4.08 0 015.063 2.293c.46-.163 1.26-.35 2.43-.403C8.759 2.175 9.139 2.163 12 2.163zM12 0C8.741 0 8.333.014 7.053.072 5.775.13 4.902.333 4.14.63a5.88 5.88 0 00-2.126 1.384A5.88 5.88 0 00.63 4.14C.333 4.902.13 5.775.072 7.053.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.058 1.278.261 2.151.558 2.913a5.88 5.88 0 001.384 2.126A5.88 5.88 0 004.14 23.37c.762.297 1.635.5 2.913.558C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.278-.058 2.151-.261 2.913-.558a5.88 5.88 0 002.126-1.384 5.88 5.88 0 001.384-2.126c.297-.762.5-1.635.558-2.913.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.058-1.278-.261-2.151-.558-2.913a5.88 5.88 0 00-1.384-2.126A5.88 5.88 0 0019.86.63C19.098.333 18.225.13 16.947.072 15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+              </svg>
+            </a>
+            <a href="#" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+            </a>
+          </div>
+
+          <div class="footer-links-bottom">
+            <span>© 2026 Todos os direitos reservados.</span>
+            <span class="dot-separator">•</span>
+            <a href="#">contato@refugio.com</a>
+          </div>
+        </div>
+      </footer>
+    </section>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="js/main.js" defer></script>
+</body>
+
+</html>

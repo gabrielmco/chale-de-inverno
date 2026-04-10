@@ -1,0 +1,189 @@
+@import 'hero';
+@import 'features';
+@import 'diamond-gallery';
+@import 'interior-grid';
+@import 'comfort';
+@import 'forest-view';
+@import 'explore-videos';
+@import 'contact-footer';
+
+:root {
+  --primary-yellow: #fad35d;
+  --primary-text: #ffffff;
+  --secondary-text: #e2e8f0;
+
+  /* GRADIENTE REFOPÇADO: Um tom densamente verde florestal / azulado pra simular vidro de alta espessura sob a floresta invernal */
+  --glass-bg: linear-gradient(135deg, rgba(16, 52, 43, 0.55), rgba(8, 28, 24, 0.65));
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-blur: blur(24px);
+
+  /* DARK LUXE SURFACE TOKENS */
+  --color-surface-dark: #151c18;
+  --color-surface-deep: #151f19;
+  --color-overlay-dark: rgba(15, 20, 18, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  color: var(--primary-text);
+  overflow-x: hidden;
+  background-color: var(--color-surface-deep);
+}
+
+/* =========================================
+   ACESSIBILIDADE GLOBAIS (A11Y)
+   ========================================= */
+/* Screen Reader Only: Oculta visualmente, porém mantém acessível para NVDA/VoiceOver */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Desliga sobressaltos e pulos bruscos para usuários com labirintite ativada no Sistema Operacional */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+#app {
+  position: relative;
+  width: 100%;
+}
+
+/* =========================================
+   NAVBAR GLOBAL
+   ========================================= */
+.navbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  padding: 2.5rem 4rem;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+  /* Para entrada do GSAP */
+  /* Máscara sutil que protege legibilidade sem parecer uma barra sólida */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45) 0%, transparent 100%);
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+
+    li {
+      a {
+        position: relative; /* Ancora o ::after do underline */
+        color: var(--primary-text);
+        text-decoration: none;
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        opacity: 0.75;
+        transition: opacity 0.3s ease;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background: rgba(255, 255, 255, 0.8);
+          /* Começa colapsado — expande esquerda -> direita no hover */
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        &:hover {
+          opacity: 1;
+
+          &::after {
+            transform: scaleX(1);
+          }
+        }
+
+        &.nav-reserve {
+          opacity: 1;
+          /* Botão de CTA não recebe underline — já tem sua identidade */
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .mobile-nav-header {
+    display: none;
+  }
+}
+
+/* Navbar queries */
+@media (max-width: 1200px) {
+  .navbar {
+    padding: 2.5rem 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1.5rem 1.5rem 0 1.5rem; /* Menos preenchimento embaixo para não sobrar tela cega */
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+
+    .nav-links {
+      display: none; /* Regra UX - Oculta navegação inteira */
+    }
+
+    .mobile-nav-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      .mobile-logo {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.6rem;
+        letter-spacing: 0.1em;
+        background: linear-gradient(180deg, #fff 0%, #a0a0a0 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .mobile-menu-btn {
+        background: transparent;
+        border: none;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.8;
+      }
+    }
+  }
+}

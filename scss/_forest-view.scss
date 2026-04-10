@@ -1,0 +1,196 @@
+/* =========================================
+   FOREST VIEW SECTION
+   Layout: Refined proportions, vertical-priority
+   frame, and premium Glass Card.
+   ========================================= */
+
+.forest-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 8rem 0;
+
+  background-image: url('../imgs/background-vista-para-o-bosque\ \(2\).webp');
+  background-size: cover;
+  background-position: center 25%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+
+  // Dark overlay sutil (vinculado ao token Global)
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--color-overlay-dark);
+    z-index: 1;
+  }
+}
+
+.forest-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* =========================================
+   LADO ESQUERDO: MOLDURA VERTICAL
+   ========================================= */
+.forest-left {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.forest-title-box {
+  border: 6px solid #ffd859;
+  padding: 6rem 2.5rem; // Padding assimétrico para esticar verticalmente
+  min-height: 400px; // Garante a proporção de "caixa alta"
+  display: flex;
+  align-items: center;
+}
+
+.forest-title {
+  font-family: 'Bebas Neue', sans-serif;
+  color: #fff;
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0.05em;
+  text-align: left;
+
+  font-size: clamp(3.5rem, 6.5vw, 6.8rem);
+  margin: 0;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================================
+   LADO DIREITO: SOM DO RIO + GLASS CARD
+   ========================================= */
+.forest-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.forest-right-header {
+  margin-bottom: 1.5rem;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.08em;
+  text-align: right;
+  width: 100%;
+
+  .label {
+    font-size: 3.8rem;
+    color: #ffd859;
+    background: linear-gradient(180deg, #ffeaa7 0%, #f1c40f 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.forest-card {
+  position: relative;
+  width: 100%;
+  max-width: 550px; // Mais largo conforme solicitado
+  padding: 3rem 2.5rem;
+  border-radius: 12px;
+
+  /* Glassmorphism Premium */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+
+  .glass-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem; // Menor para ar de revista
+    font-weight: 300;
+    line-height: 1.8; // Bem generoso
+    color: #aebfd4;
+    margin: 0;
+  }
+
+  /* Badge/Tag Amarela Premium */
+  .card-badge {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 24px;
+    height: 24px;
+    background-color: #ffd859;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(255, 216, 89, 0.4);
+
+    .check-icon {
+      color: #151c18;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1;
+    }
+  }
+}
+
+/* =========================================
+   RESPONSIVIDADE (Mobile)
+   ========================================= */
+@media (max-width: 992px) {
+  .forest-section {
+    padding: 6rem 0;
+    min-height: auto;
+  }
+
+  .forest-wrapper {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    padding: 0 2rem;
+  }
+
+  .forest-left {
+    justify-content: center;
+  }
+
+  .forest-title-box {
+    padding: 4rem 2rem;
+    border-width: 4px;
+    min-height: auto;
+  }
+
+  .forest-title {
+    font-size: clamp(3rem, 12vw, 4.5rem);
+    text-align: center;
+  }
+
+  .forest-right {
+    align-items: center;
+  }
+
+  .forest-right-header {
+    text-align: center;
+
+    .label {
+      font-size: 3rem;
+    }
+  }
+
+  .forest-card {
+    max-width: 100%;
+    padding: 2.5rem 1.5rem;
+  }
+}

@@ -1,0 +1,438 @@
+/* =========================================
+   FEATURES SECTION
+   ========================================= */
+
+// Matemática corrigida
+$tri-height: 400px;
+$tri-width: 30vw;
+$tri-half: 15vw; // Metade exata de 30vw
+$tri-gap: 0.3vw;
+
+.features-section {
+  width: 100%;
+  background-color: var(--color-surface-dark);
+  position: relative; // É AQUI que o absolute vai se ancorar
+  padding-top: 15rem;
+  padding-bottom: 8rem;
+  color: var(--primary-text);
+  z-index: 2;
+  overflow: visible !important;
+}
+
+.features-grid {
+  width: 100%;
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.features-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  // REMOVIDO o position: relative. O absolute agora vai ignorar essa coluna e buscar a section principal.
+}
+
+/* =========================================
+   FAIXA DE TRIÂNGULOS (Absolute Total)
+   ========================================= */
+.triangles-strip {
+  position: absolute;
+  left: 0; // Gruda na esquerda do monitor
+  top: 15rem; // Compensa o padding-top da section para ficar na altura certa
+  height: $tri-height;
+
+  // Aumentado para 65vw para caber todos os 4 triângulos sem cortar a ponta direita do T4
+  width: 65vw;
+  overflow: hidden; // Corta APENAS a ponta esquerda do T1 que vaza pra fora da tela
+}
+
+.triangle {
+  position: absolute;
+  width: $tri-width;
+  height: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6) contrast(1.2) grayscale(0.15);
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+.shape-1 {
+  // Metade do triângulo fica fora da tela (esquerda), a outra metade entra fazendo o corte vertical perfeito
+  left: -$tri-half;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  z-index: 2;
+}
+
+.shape-2 {
+  left: calc(0vw + #{$tri-gap});
+  clip-path: polygon(50% 0, 0 100%, 100% 100%);
+  z-index: 3;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--primary-yellow);
+    z-index: 10;
+  }
+}
+
+.shape-3 {
+  left: calc(#{$tri-half} + (#{$tri-gap} * 2));
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  z-index: 1;
+}
+
+.shape-4 {
+  left: calc((#{$tri-half} * 2) + (#{$tri-gap} * 3));
+  clip-path: polygon(50% 0, 0 100%, 100% 100%);
+  z-index: 4;
+
+  .yellow-edge {
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(49.5% 0, 50.5% 0, 100% 100%, 98.5% 100%);
+    background: var(--primary-yellow);
+    z-index: 10;
+  }
+}
+
+/* =========================================
+   CONTEÚDO (Texto + Botão)
+   ========================================= */
+.features-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  // Empurra o texto para baixo para não ficar atrás dos triângulos absolutos
+  margin-top: calc(#{$tri-height} + 4rem);
+  padding: 0;
+  width: 100%;
+  z-index: 10;
+
+  .tall-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 12vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+    margin-left: -4px !important; // Compensação óptica
+    margin-bottom: 2rem;
+    max-width: 800px;
+    background: linear-gradient(180deg, #c0c0c0 0%, #606060 50%, #9a9a9a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    display: block;
+  }
+
+  .features-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--secondary-text);
+    max-width: 600px;
+    margin-left: 0 !important;
+    margin-bottom: 3.5rem;
+  }
+}
+
+.yellow-btn {
+  background-color: #ffd859 !important;
+  color: #111;
+  font-family: inherit;
+  border: none;
+  border-radius: 12px;
+  padding: 1.15rem 2.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  opacity: 1 !important;
+  margin-left: 0 !important;
+  align-self: flex-start;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(255, 216, 89, 0.25);
+    opacity: 1;
+  }
+}
+
+/* =========================================
+   COLUNA DIREITA — LISTA
+   ========================================= */
+.features-right {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10rem;
+}
+
+.numbered-list {
+  list-style: none;
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 680px;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  cursor: pointer;
+  // Cancela a área clicável fantasma gigantesca do flexbox:
+  pointer-events: none;
+  // Transição específica apenas no transform — não usar 'all' para evitar conflito com background-clip
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:not(.is-active):hover {
+    transform: translateX(8px);
+
+    // Branco suave: sobrescreve o text-fill-color transparente do gradiente
+    .item-content .label {
+      -webkit-text-fill-color: rgba(255, 255, 255, 0.95);
+    }
+
+    .item-content .num {
+      -webkit-text-fill-color: rgba(255, 255, 255, 0.6);
+      opacity: 1;
+    }
+  }
+}
+
+.item-content {
+  display: flex;
+  align-items: baseline;
+  gap: 0.1em;
+  // Restaura o clique APENAS na área do texto exato:
+  pointer-events: auto;
+}
+
+.item-content .num {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  background: linear-gradient(180deg, #d0d0d0 0%, #7a7a7a 50%, #aaa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.5;
+  // Transição suave no fill-color via filter
+  transition: -webkit-text-fill-color 0.4s ease, opacity 0.4s ease;
+}
+
+.item-content .label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 400;
+  background: linear-gradient(180deg, #c0c0c0 0%, #606060 50%, #9a9a9a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: -webkit-text-fill-color 0.4s ease;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  margin-top: 0.6rem;
+  transition: background 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+
+.divider-long {
+  width: 100%;
+  transform-origin: left;
+}
+
+.divider-short {
+  width: 50%;
+  align-self: flex-end;
+  // Direita -> esquerda (ancorada à direita, expansão para dentro)
+  transform-origin: right;
+}
+
+.list-item.is-active {
+  .item-content .num {
+    opacity: 1;
+    background: linear-gradient(180deg, #fff 0%, #d0d0d0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .item-content .label {
+    background: linear-gradient(180deg, #fff 0%, #d4d4d4 40%, #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  // A linha do item ativo ganha destaque no branco, e as inativas ficam escuras
+  .divider {
+    background: rgba(255, 255, 255, 0.4);
+  }
+}
+
+@media (max-width: 1024px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .features-right {
+    justify-content: flex-start;
+    margin-top: 2rem;
+  }
+
+  .numbered-list {
+    min-height: 400px;
+
+    .list-item {
+      align-items: flex-start;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .features-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    /* Evitar vazamento horizontal */
+    overflow-x: hidden;
+  }
+
+  .features-grid {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1.5rem;
+    gap: 2rem;
+  }
+
+  .features-left {
+    display: contents; /* Desacopla filhos para reordenação global no grid */
+  }
+
+  /* Matemática Ouro: Triangulos 100vw EDGE-TO-EDGE */
+  .triangles-strip {
+    position: relative; /* Flui na página em vez de ficar voando no fundo */
+    width: 100vw;
+    height: 250px; 
+    left: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    top: 0;
+    order: 1; /* 1º elemento - TOPO */
+  }
+
+  .triangle {
+    width: 50vw; /* Base matemática centralizada: W = 50vw */
+  }
+
+  /* O pulo exato de 25vw (0.5W) faz o clip-path entrelazar perfeitamente igual ao desktop */
+  .shape-1 { 
+    left: -25vw; /* T1 vaza a metade inteira na margem esquerda ! */
+    z-index: 2; 
+  }
+  .shape-2 { 
+    left: 0vw; 
+    z-index: 3; 
+  }
+  .shape-3 { 
+    left: 25vw; 
+    z-index: 1; 
+  }
+  .shape-4 { 
+    left: 50vw; /* T4 começa no meio exato e sua ponta chega precisamente em 100vw ! */
+    z-index: 4; 
+  }
+
+  /* Lista Tátil Condensada (Botões) */
+  .features-right {
+    order: 2; /* 2º elemento - MEIO */
+    margin-top: 0;
+    width: 100%;
+  }
+
+  .numbered-list {
+    min-height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .list-item {
+    /* 4 itens cabem na primeira fileira e o wrap joga os 3 restantes no centro! */
+    width: calc(25% - 0.375rem);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 0.6rem 0.2rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .list-item.is-active {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(250, 211, 93, 0.3); /* Toque amarelo dourado */
+    transform: translateY(-2px);
+  }
+
+  .item-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .item-content .label {
+    font-size: 0.6rem;
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .item-content .num {
+    font-size: 0.55rem;
+    opacity: 0.5;
+  }
+
+  .divider {
+    display: none !important; /* Remove divisores longos do mobile! */
+  }
+
+  /* Reduz espaço text to block */
+  .features-content {
+    order: 3; /* 3º elemento - FINAL */
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    .yellow-btn {
+      align-self: center !important;
+    }
+  }
+}

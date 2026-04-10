@@ -1,0 +1,264 @@
+/* =========================================
+   EXPLORE VIDEOS SECTION
+   Layout: Título topo-esquerda, cards
+   alinhados embaixo-direita (ref image).
+   ========================================= */
+
+.explore-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 0;
+  background-image: url('../imgs/background-section-video.webp');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  z-index: 2;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(15, 23, 19, 0.8) 0%, rgba(15, 23, 19, 0.2) 100%);
+    z-index: 0;
+  }
+}
+
+.explore-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px; // Restaurado para comportar bem a tela
+  margin: 0 auto;
+  padding: 0 4rem;
+  width: 100%;
+}
+
+.explore-content-grid {
+  display: flex;
+  flex-wrap: wrap; // Permite quebrar se o monitor for bem pequeno
+  gap: 2rem; // Retirado todo o excesso de buraco, agora os cards ficam COLADOS no texto
+  align-items: flex-end; // Alinha ambos pela base
+  justify-content: flex-start; // Tudo forçado para a esquerda
+}
+
+.explore-left {
+  flex: 1 1 500px;
+  max-width: 750px;
+}
+
+.explore-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 5.5vw, 6rem); // Tamanho ideal
+  font-weight: 400;
+  line-height: 0.95;
+  color: #fff;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.02em;
+
+  // A CARACTERÍSTICA white-space: nowrap FOI REMOVIDA DAQUI
+  // Ela estava forçando a div a ter mais de 1200px de largura e empurrando seus cards para fora da tela!
+
+  .text-accent {
+    color: var(--primary-yellow);
+  }
+}
+
+.explore-action-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+
+  .action-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: #e2e8f0;
+    text-transform: uppercase;
+  }
+
+  .icon-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    svg {
+      width: 16px;
+      height: 16px;
+      fill: #fff;
+      margin-left: 3px;
+      transition: fill 0.3s ease;
+    }
+
+    &:hover {
+      background: #fff;
+
+      svg {
+        fill: #151f19;
+      }
+    }
+  }
+}
+
+.explore-description {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.65;
+  max-width: 420px;
+  margin-bottom: 0; // Fix para alinhar perfeitamente com os vídeos na base
+}
+
+/* =========================================
+   LADO DIREITO (CARDS HORIZONTAIS)
+   Cards alinhados pela base do grid
+   ========================================= */
+.explore-right {
+  display: flex;
+  gap: 1.5rem;
+  align-self: end; // Reforço: cola na base
+  align-items: flex-end; // Garante q os 2 cards selem no eixo baixo
+}
+
+.video-thumbnail-card {
+  position: relative;
+  width: 280px;
+  aspect-ratio: 4 / 3;
+  border-radius: 0;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease, filter 0.4s ease;
+    // Boost massivo na base para corrigir fotos super escuras da floresta (bugs)
+    filter: brightness(1.2) saturate(1.1);
+  }
+
+  .play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .play-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+
+    svg {
+      width: 18px;
+      height: 18px;
+      fill: #fff;
+      margin-left: 4px;
+    }
+  }
+
+  /* Estado Ativo */
+  &.is-active {
+    border-color: rgba(250, 211, 93, 0.6);
+    box-shadow: 0 0 25px rgba(250, 211, 93, 0.15), 0 20px 40px rgba(0, 0, 0, 0.5);
+
+    img {
+      filter: brightness(1.3) saturate(1.2);
+    }
+  }
+
+  /* Hover Premium */
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+
+    img {
+      transform: scale(1.05);
+      filter: brightness(1.4) saturate(1.2);
+    }
+
+    .play-circle {
+      background: #fff;
+      border-color: #fff;
+      transform: scale(1.1);
+
+      svg {
+        fill: #151f19;
+      }
+    }
+  }
+}
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 1300px) {
+  .explore-wrapper {
+    padding: 0 3rem;
+  }
+
+  .video-thumbnail-card {
+    width: 240px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .explore-content-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .explore-right {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .explore-section {
+    padding: 6rem 0;
+  }
+
+  .explore-wrapper {
+    padding: 0 2rem;
+  }
+
+  .explore-title {
+    font-size: clamp(3.5rem, 12vw, 5rem);
+  }
+
+  .explore-action-row {
+    flex-wrap: wrap;
+  }
+
+  .explore-right {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .video-thumbnail-card {
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 16 / 9;
+  }
+}
